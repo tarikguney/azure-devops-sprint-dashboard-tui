@@ -1,13 +1,31 @@
-# ADO Sprint Dashboard
+# Azure DevOps Sprint Dashboard — Terminal UI
 
-A keyboard-driven terminal dashboard for Azure DevOps that shows the work
-items assigned to you in the current sprint, organized as a navigable
-tree of **Enabling Specifications** and their child **Tasks**. You can
-switch states, edit titles, create new tasks and specs, move items
-between iterations, and jump to the web view — all without leaving the
-terminal.
+A keyboard-driven **terminal UI (TUI)** for Azure DevOps that shows the
+work items assigned to you in the current sprint as a navigable tree of
+**Enabling Specifications** and their child **Tasks**. You can switch
+states, edit titles, create new tasks and specs, move items between
+iterations, and jump to the web view — all without leaving the terminal.
 
 Built with [Textual](https://textual.textualize.io/).
+
+## Why a TUI?
+
+This tool exists for one reason: **to stay in the terminal while you
+work with AI coding agents.** When you're pair-programming with Claude
+Code, Codex CLI, Gemini CLI, or any other agent, every trip out to a
+browser tab for "what was that ticket again?" or "let me mark that task
+in progress" is a context switch — for you and for the agent watching
+your shell.
+
+This dashboard keeps sprint planning, status updates, and work-item
+edits in the same terminal window where the agent already lives. You
+read your sprint, change a task to In Progress, hand it to the agent,
+and never alt-tab. The agent can even see the dashboard's state through
+your terminal scrollback.
+
+If you don't use AI coding agents heavily, the regular Azure DevOps web
+UI is probably a better fit. If you do, you'll feel the difference
+within an hour.
 
 ## Requirements
 
