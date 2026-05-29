@@ -36,12 +36,29 @@ within an hour.
 
 ## Install
 
+This project isn't published to PyPI, so start by cloning the source:
+
 ```
+git clone https://github.com/tarikguney/azure-devops-sprint-dashboard-tui.git
+cd azure-devops-sprint-dashboard-tui
+```
+
+Then create a virtual environment and install:
+
+```
+python -m venv .venv
+# Windows
+.venv\Scripts\activate
+# macOS/Linux
+source .venv/bin/activate
+
 pip install -e .
 ```
 
-This installs an `ado-dashboard` script. You can also run the app
-directly with `python dashboard.py`.
+`pip install -e .` installs the dependencies (`textual`, `azure-devops`,
+`msrest`) and registers an `ado-dashboard` console script that points
+back at this directory, so any edits you make here are picked up on the
+next run. You can also run the app directly with `python dashboard.py`.
 
 ## First Run
 
