@@ -1,0 +1,16 @@
+/* ADO Sprint Dashboard */
+
+Screen {
+    background: #151520;
+}
+
+#toast-container {
+    dock: bottom;
+    height: auto;
+    max-height: 3;
+}
+
+Footer {
+    background: #1a1e2e;
+    color: #6a7a8e;
+}
