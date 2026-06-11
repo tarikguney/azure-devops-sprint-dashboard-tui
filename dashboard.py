@@ -1108,10 +1108,12 @@ class AdoDashboard(App):
     @work(thread=True, group="create-spec")
     def _do_create_spec(self, title: str, area_path: str) -> None:
         try:
+            extra_tags = ["WeeklyTarget"] if self._tag == "WeeklyTarget" else None
             new_id = create_enabling_spec(
                 title=title,
                 iteration_path=self._sprint.path,
                 area_path=area_path,
+                extra_tags=extra_tags,
             )
             self.call_from_thread(
                 self.notify,

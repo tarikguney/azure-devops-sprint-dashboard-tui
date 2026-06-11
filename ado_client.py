@@ -388,21 +388,32 @@ def fetch_work_items(sprint: Sprint, tag: str | None = DEFAULT_TAG) -> Dashboard
     )
 
 
-def create_enabling_spec(title: str, iteration_path: str, area_path: str) -> int:
+def create_enabling_spec(
+    title: str,
+    iteration_path: str,
+    area_path: str,
+    extra_tags: list[str] | None = None,
+) -> int:
     """Create an Enabling Specification assigned to the current user.
 
-    Uses the provided iteration and area paths, adds the 'Triaged' tag,
-    and assigns to the configured user. Returns the new work item ID.
+    Uses the provided iteration and area paths, adds the 'Triaged' tag
+    (plus any `extra_tags`), and assigns to the configured user.
+    Returns the new work item ID.
     """
     conn = _get_connection()
     wit_client: WorkItemTrackingClient = conn.clients.get_work_item_tracking_client()
+
+    tags = ["Triaged"]
+    for tag in extra_tags or []:
+        if tag and tag not in tags:
+            tags.append(tag)
 
     patch_doc = [
         JsonPatchOperation(op="add", path="/fields/System.Title", value=title),
         JsonPatchOperation(op="add", path="/fields/System.IterationPath", value=iteration_path),
         JsonPatchOperation(op="add", path="/fields/System.AreaPath", value=area_path),
         JsonPatchOperation(op="add", path="/fields/System.AssignedTo", value=_cfg().user_email),
-        JsonPatchOperation(op="add", path="/fields/System.Tags", value="Triaged"),
+        JsonPatchOperation(op="add", path="/fields/System.Tags", value="; ".join(tags)),
     ]
 
     new_item = wit_client.create_work_item(
