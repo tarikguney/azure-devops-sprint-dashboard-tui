@@ -476,6 +476,7 @@ class AdoDashboard(App):
         Binding("x", "set_blocked", "Block"),
         Binding("b", "open_browser", "Browse"),
         Binding("y", "copy_link", "Copy Link"),
+        Binding("p", "copy_id", "Copy ID"),
         Binding("slash", "search", "Search"),
         Binding("a", "add_task", "Add Task"),
         Binding("n", "add_spec", "New Spec"),
@@ -746,6 +747,19 @@ class AdoDashboard(App):
                 creationflags=subprocess.CREATE_NO_WINDOW,
             )
             self.notify(f"Copied link for #{wid}", timeout=2)
+
+    def action_copy_id(self) -> None:
+        if self._confirming:
+            return
+        tree = self.query_one(WorkItemTree)
+        wid = tree.get_selected_work_item_id()
+        if wid is not None:
+            subprocess.run(
+                ["clip.exe"],
+                input=str(wid).encode("utf-16le"),
+                creationflags=subprocess.CREATE_NO_WINDOW,
+            )
+            self.notify(f"Copied work item ID #{wid}", timeout=2)
 
     def action_search(self) -> None:
         if self._confirming:

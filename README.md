@@ -96,6 +96,7 @@ ado-dashboard [--interval SECONDS] [--tag TAG] [--no-tag] [--no-refresh]
 | `o` / `i` / `v` / `c` / `x` | Set state to Open / In Progress / Resolved / Closed / Blocked |
 | `b` | Open the selected item in the browser |
 | `y` | Copy the item URL to the clipboard |
+| `p` | Copy only the work item ID to the clipboard |
 | `t` | Edit the title of the selected item |
 | `a` | Add a child task under the selected spec |
 | `n` | Create a new Enabling Specification in the current iteration |
